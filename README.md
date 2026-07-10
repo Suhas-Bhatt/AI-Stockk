@@ -1,7 +1,5 @@
 # AI Stock Recommendation
 
-![Dashboard Mockup](file:///C:/Users/Suhas/.gemini/antigravity-ide/brain/fa2b0a70-44de-4e18-af39-236c4bee62bf/dashboard_mockup_1783683228624.png)
-
 ## Overview
 This repository hosts an **AI-powered stock recommendation platform**. The system provides real‑time stock analysis, predictive modeling, and an interactive web dashboard for traders and investors.
 
@@ -55,5 +53,3 @@ Open your browser at `http://localhost:5173` to explore the dashboard.
 ## Contributing
 Contributions are welcome! Please fork the repo, create a feature branch, and submit a pull request. Follow the existing code style and include unit tests where applicable.
 
-## License
-MIT License – see the [LICENSE](LICENSE) file for details.
