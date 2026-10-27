@@ -1,0 +1,60 @@
+# Render Blueprint — provisions all 3 services with auto-deploy on every push.
+# NOTE: cross-service URLs (ML_SERVICE_URL, CLIENT_URL, VITE_API_BASE_URL) are left
+# as manual env vars — fill them in via the Render dashboard after the first deploy,
+# once you know each service's live *.onrender.com URL. See README.md for the table.
+services:
+  - type: web
+    name: ai-stockk-ml
+    runtime: python
+    rootDir: backend-ml
+    buildCommand: pip install -r requirements.txt && python train_model.py
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    plan: free
+    autoDeploy: true
+
+  - type: web
+    name: ai-stockk-backend
+    runtime: node
+    rootDir: backend-express
+    buildCommand: npm install
+    startCommand: npm start
+    plan: free
+    autoDeploy: true
+    envVars:
+      - key: MONGO_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: JWT_EXPIRES_IN
+        sync: false
+      - key: CLOUDINARY_CLOUD_NAME
+        sync: false
+      - key: CLOUDINARY_API_KEY
+        sync: false
+      - key: CLOUDINARY_API_SECRET
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: ALPHA_VANTAGE_KEY
+        sync: false
+      - key: MAIL_USER
+        sync: false
+      - key: MAIL_PASS
+        sync: false
+      - key: MAIL_TO
+        sync: false
+      - key: ML_SERVICE_URL   # fill with ai-stockk-ml's live URL after it deploys
+        sync: false
+      - key: CLIENT_URL       # fill with ai-stockk-frontend's live URL after it deploys
+        sync: false
+
+  - type: web
+    name: ai-stockk-frontend
+    runtime: static
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    autoDeploy: true
+    envVars:
+      - key: VITE_API_BASE_URL   # fill with "<ai-stockk-backend live URL>/api"
+        sync: false

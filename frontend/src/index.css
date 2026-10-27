@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-blue: #2563eb;
+  --color-slate-900: #0f172a;
+  --color-slate-800: #1e293b;
+  
+  --font-sans: "Nunito", system-ui, sans-serif;
+  
+  --radius-3xl: 1.5rem;
+  
+  --shadow-premium: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+/* 🌐 GLOBAL BODY STYLING */
+body {
+  background-color: #f8fafc; /* Very light slate background */
+  color: #1e293b;
+  @apply font-sans;
+}
+
+/* 🏗️ LAYOUT UTILITIES */
+.page-container {
+  margin-left: 16rem; /* Match sidebar width (w-64 = 16rem) */
+  min-height: 100vh;
+  padding: 2rem;
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .page-container {
+    margin-left: 0;
+    padding: 1rem;
+  }
+}
+
+/* ✨ PREMIUM ANIMATION CLASSES */
+.glass-card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: var(--shadow-premium);
+}
+
+/* 🎯 CUSTOM SCROLLBAR (Dark Sidebar Style) */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 10px;
+}
